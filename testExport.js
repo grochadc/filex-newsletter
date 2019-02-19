@@ -1,4 +1,4 @@
-const { parseHTML } = require("./parseHTML");
+const { parseHTML } = require("./lib/parseHTML");
 
 (async () => {
   console.log((await parseHTML("./newsletter/1kabuki.html")).html);

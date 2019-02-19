@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 
 const fs = require("fs");
 
-const { parseHTML } = require("./parseHTML");
+const { parseHTML } = require("./lib/parseHTML");
 
 async function main() {
   let account = await nodemailer.createTestAccount();
