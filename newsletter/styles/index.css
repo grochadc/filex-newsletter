@@ -1,8 +1,9 @@
 div#wrapper {
   background-color: #b04858;
   padding: 20px;
+  text-align: center;
 }
-h2 {
+h1 {
   color: white;
 }
 p {
