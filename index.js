@@ -1,10 +1,10 @@
 const nodemailer = require("nodemailer");
 
 const fs = require("fs");
-
-const { parseHTML } = require("./lib/parseHTML");
+const { parseCSS } = require("./parseCSS");
 
 async function main() {
+  console.log("creating test account...");
   let account = await nodemailer.createTestAccount();
 
   let transporter = nodemailer.createTransport({
@@ -20,10 +20,8 @@ async function main() {
     }
   });
 
-  //Current newsletter html path
-  const htmlPath = "./newsletter/1kabuki.html";
-
-  const parsedHTML = await parseHTML(htmlPath);
+  console.log("Parsing css");
+  const parsedHTML = await parseCSS();
 
   let mailOptions = {
     from: "FILEX Newsletter <filex@cusur.udg.mx>",
