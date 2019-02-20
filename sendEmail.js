@@ -3,6 +3,12 @@ const nodemailer = require("nodemailer");
 const fs = require("fs");
 const { parseCSS } = require("./parseCSS");
 
+const mailList = [
+  "grochadc@gmail.com",
+  "gonzalo.rochac@cusur.udg.mx",
+  "genbx21@gmail.com"
+];
+
 async function main(cli) {
   let transportOpts;
 
@@ -45,7 +51,7 @@ async function main(cli) {
 
   let mailOptions = {
     from: "FILEX Newsletter <filex@cusur.udg.mx>",
-    to: "grochadc@gmail.com",
+    to: mailList.join(","),
     subject: parsedHTML.title,
     html: parsedHTML.html
   };
