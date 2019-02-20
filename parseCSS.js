@@ -8,16 +8,18 @@ const readFile = util.promisify(fs.readFile);
 
 async function main() {
   const htmlInput = await readFile("./newsletter/1kabuki.html");
-  const dom = new JSDOM(htmlInput);
   const html = await inlineCSS(htmlInput, {
     url: `file://${__dirname}${path.win32.dirname(
       "/newsletter/styles/index.css"
     )}`
   });
-  return {
+
+  const dom = new JSDOM(htmlInput);
+  const result = {
     html,
     title: dom.window.document.title
   };
+  return result;
 }
 
 module.exports = { parseCSS: main };
