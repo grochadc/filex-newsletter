@@ -6,7 +6,7 @@ const { parseCSS } = require("./parseCSS");
 async function main(cli) {
   let transportOpts;
 
-  if (cli.user && cli.pass && cli.server) {
+  if (cli) {
     console.log("Got info from arguments!");
     transportOpts = {
       host: cli.server,
