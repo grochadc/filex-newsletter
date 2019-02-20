@@ -37,10 +37,10 @@ async function main(cli) {
     };
   }
 
-  console.log("Creating transporter");
+  console.log("Creating transporter...");
   let transporter = nodemailer.createTransport(transportOpts);
 
-  console.log("Parsing css");
+  console.log("Parsing CSS...");
   const parsedHTML = await parseCSS();
 
   let mailOptions = {
@@ -49,12 +49,13 @@ async function main(cli) {
     subject: parsedHTML.title,
     html: parsedHTML.html
   };
-  console.log("sending email...");
-  console.log(`HTML body: ${mailOptions.html}`);
+  console.log("Sending email...");
   let info = await transporter.sendMail(mailOptions);
-  console.log("Sent email");
+  console.log("Email sent!");
   console.log(`Message sent: ${info.messageId}`);
-  console.log(`Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
+  if (transportOpts.host == "smtp.ethereal.email") {
+    console.log(`Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
+  }
 }
 
 module.exports = {
