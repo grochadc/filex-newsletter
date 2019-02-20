@@ -1,4 +1,5 @@
 const { sendEmail } = require("./sendEmail");
+
 require("yargs")
   .usage("$0 <cmd> [args]")
   .command(
@@ -23,4 +24,7 @@ require("yargs")
       }).catch(console.error);
     }
   )
+  .demandCommand()
+  .recommendCommands()
+  .strict()
   .help().argv;
