@@ -2,9 +2,28 @@ div#wrapper {
   background-color: #b04858;
   padding: 20px;
   text-align: center;
+  overflow: hidden;
 }
 h1 {
   color: white;
+  font-family: sans-serif;
+}
+div.line {
+  height: 2px;
+  border-bottom: 1px solid #e5e5e5;
+  width: 70%;
+  margin: auto;
+}
+div#content {
+  width: 70%;
+  margin: auto;
+  text-align: justify;
+}
+
+img.main {
+  width: 300px;
+  float: left;
+  margin-right: 15px;
 }
 p {
   color: #e0e0e0;
