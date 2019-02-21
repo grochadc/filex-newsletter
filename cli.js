@@ -17,11 +17,15 @@ require("yargs")
       }
     },
     function(argv) {
-      sendEmail({
-        user: argv.user,
-        pass: argv.pass,
-        server: argv.server
-      }).catch(console.error);
+      if (argv.user) {
+        sendEmail({
+          user: argv.user,
+          pass: argv.pass,
+          server: argv.server
+        }).catch(console.error);
+      } else {
+        sendEmail().catch(console.error);
+      }
     }
   )
   .demandCommand()
