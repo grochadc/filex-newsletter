@@ -3,10 +3,13 @@ div#wrapper {
   padding: 20px;
   text-align: center;
   overflow: hidden;
+  font-family: "Verdana", sans-serif;
 }
-h1 {
+h1,
+h2,
+h3 {
   color: white;
-  font-family: sans-serif;
+  font-family: "Arial Black", sans-serif;
 }
 div.line {
   height: 2px;
@@ -30,4 +33,22 @@ p {
 }
 a {
   color: #6890b8;
+}
+
+.talleres {
+  text-align: center;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.flexItem {
+  margin: 15px;
+}
+
+footer p {
+  text-align: center;
+  font-family: "Monaco", sans-serif;
 }
