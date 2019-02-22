@@ -1,0 +1,54 @@
+div#wrapper {
+  background-color: #b04858;
+  padding: 20px;
+  text-align: center;
+  overflow: hidden;
+  font-family: "Verdana", sans-serif;
+}
+h1,
+h2,
+h3 {
+  color: white;
+  font-family: "Arial Black", sans-serif;
+}
+div.line {
+  height: 2px;
+  border-bottom: 1px solid #e5e5e5;
+  width: 70%;
+  margin: auto;
+}
+div#content {
+  width: 70%;
+  margin: auto;
+  text-align: justify;
+}
+
+img.main {
+  width: 300px;
+  float: left;
+  margin-right: 15px;
+}
+p {
+  color: #e0e0e0;
+}
+a {
+  color: #6890b8;
+}
+
+.talleres {
+  text-align: center;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.flexItem {
+  margin: 15px;
+}
+
+footer p {
+  text-align: center;
+  font-family: "Monaco", sans-serif;
+}

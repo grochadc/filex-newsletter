@@ -7,11 +7,9 @@ const { JSDOM } = require("jsdom");
 const readFile = util.promisify(fs.readFile);
 
 async function main() {
-  const htmlInput = await readFile("./newsletter/1kabuki.html");
+  const htmlInput = await readFile("./static-parsing/build/index.html");
   const html = await inlineCSS(htmlInput, {
-    url: `file://${__dirname}${path.win32.dirname(
-      "/newsletter/styles/index.css"
-    )}`
+    url: " "
   });
 
   const dom = new JSDOM(htmlInput);
