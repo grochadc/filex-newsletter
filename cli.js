@@ -7,21 +7,31 @@ require("yargs")
     "send the email",
     {
       user: {
-        alias: "u"
+        alias: "u",
+        describe: "user"
       },
       pass: {
-        alias: "p"
+        alias: "p",
+        describe: "pass"
       },
       server: {
-        alias: "s"
+        alias: "s",
+        describe: "server"
+      },
+      verbose: {
+        alias: "v",
+        describe: "Verbose mode",
+        boolean: true
       }
     },
     function(argv) {
       if (argv.user) {
+        const { user, pass, server, verbose } = argv;
         sendEmail({
-          user: argv.user,
-          pass: argv.pass,
-          server: argv.server
+          user,
+          pass,
+          server,
+          verbose
         }).catch(console.error);
       } else {
         sendEmail().catch(console.error);
