@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const emails = require("./emails.js");
 
 const fs = require("fs");
 const { parseCSS } = require("./parseCSS");
@@ -43,19 +44,24 @@ async function main(cli) {
   console.log("Parsing CSS...");
   const parsedHTML = await parseCSS();
 
-  let mailOptions = {
-    from: "FILEX Newsletter <filex@cusur.udg.mx>",
-    to: "grochadc@gmail.com",
-    subject: parsedHTML.title,
-    html: parsedHTML.html
-  };
-  console.log("Sending email...");
-  let info = await transporter.sendMail(mailOptions);
-  console.log("Email sent!");
-  console.log(`Message sent: ${info.messageId}`);
-  if (transportOpts.host == "smtp.ethereal.email") {
-    console.log(`Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
-  }
+  emails.forEach(async (chunk, i) => {
+    let chunkedEmails = chunk.join();
+
+    let mailOptions = {
+      from: "FILEX Newsletter <filexnewsletter@gmail.com>",
+      to: chunkedEmails,
+      subject: parsedHTML.title,
+      html: parsedHTML.html
+    };
+
+    console.log("Sending email...", i + 1);
+    let info = await transporter.sendMail(mailOptions);
+    console.log("Email sent!", i + 1);
+    if (transportOpts.host == "smtp.ethereal.email") {
+      console.log(`Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
+    }
+  });
+  console.log("Waiting for emails confirmation...");
 }
 
 module.exports = {
