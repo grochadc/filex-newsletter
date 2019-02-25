@@ -23,8 +23,15 @@ div#content {
   width: 70%;
   margin: auto;
   text-align: justify;
+  margin-bottom: 10px;
 }
-
+div#vocabulary {
+  display: flex;
+  font-size: 11pt;
+}
+div#vocabulary div {
+  margin-right: 20px;
+}
 img.main {
   width: 300px;
   float: left;
