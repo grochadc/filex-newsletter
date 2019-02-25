@@ -44,11 +44,19 @@ a {
   color: #6890b8;
 }
 
+.workshopsContainer {
+  display: flex;
+  width: 70%;
+  margin: auto;
+}
+
 .talleres {
   text-align: center;
 }
 
 .flexContainer {
+  width: 50%;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
