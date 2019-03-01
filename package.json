@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "imap": "^0.8.19",
+    "imap-simple": "^4.3.0",
     "inline-css": "^2.4.1",
     "jsdom": "^13.2.0",
     "nodemailer": "^5.1.1",
