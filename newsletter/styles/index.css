@@ -28,6 +28,7 @@ div#content {
 div#vocabulary {
   display: flex;
   font-size: 11pt;
+  text-align: left;
 }
 div#vocabulary div {
   margin-right: 20px;
