@@ -46,7 +46,6 @@ a {
 }
 
 .workshopsContainer {
-  display: flex;
   width: 70%;
   margin: auto;
 }
@@ -55,15 +54,13 @@ a {
   text-align: center;
 }
 
-.flexContainer {
+.talleresContainer {
   width: 50%;
   margin: auto;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
 }
 
-.flexItem {
+.workshop {
   margin: 15px;
 }
 
