@@ -6,8 +6,8 @@ const { JSDOM } = require("jsdom");
 
 const readFile = util.promisify(fs.readFile);
 
-async function main() {
-  const htmlInput = await readFile("./newsletter/1kabuki.html");
+async function main(filepath) {
+  const htmlInput = await readFile(filepath);
   const html = await inlineCSS(htmlInput, {
     url: `file://${__dirname}${path.win32.dirname(
       "/newsletter/styles/index.css"

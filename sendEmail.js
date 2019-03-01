@@ -42,7 +42,7 @@ async function main(cli) {
   let transporter = nodemailer.createTransport(transportOpts);
 
   console.log("Parsing CSS...");
-  const parsedHTML = await parseCSS();
+  const parsedHTML = await parseCSS("./newsletter/2muxes.html");
 
   emails.forEach(async (chunk, i) => {
     let chunkedEmails = chunk.join();
