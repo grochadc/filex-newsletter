@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const emails = require("./failed-emails.js");
 
 const fs = require("fs");
 const { parseCSS } = require("./parseCSS");
@@ -27,14 +28,18 @@ async function main(cli) {
   console.log("Parsing CSS...");
   const parsedHTML = await parseCSS("./newsletter/2muxes.html");
 
-  let mailOptions = {
-    from: "FILEX Newsletter <filexnewsletter@gmail.com>",
-    to: "genbx21@gmail.com",
-    subject: parsedHTML.title,
-    html: parsedHTML.html
-  };
+  emails.forEach(async email => {
+    let mailOptions = {
+      from: "FILEX Newsletter <filexnewsletter@gmail.com>",
+      to: email,
+      subject: parsedHTML.title,
+      html: parsedHTML.html
+    };
 
-  let info = await transporter.sendMail(mailOptions);
+    let info = await transporter.sendMail(mailOptions);
+    console.log("Email sent to", email, info.messageID);
+  });
+
   console.log("Waiting for email confirmation...");
 }
 
