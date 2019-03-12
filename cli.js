@@ -1,4 +1,5 @@
 const { sendEmail } = require("./sendEmail");
+const checkEmail = require("./lib/emails/checkMail");
 
 require("yargs")
   .usage("$0 <cmd> [args]")
@@ -37,6 +38,24 @@ require("yargs")
         //When this func is called without args, a dummy email is sent
         sendEmail().catch(console.error);
       }
+    }
+  )
+  .demandCommand()
+  .command(
+    "check",
+    "Check Inbox for rejected or not found emails",
+    {
+      user: {
+        alias: "u",
+        describe: "Username"
+      },
+      pass: {
+        alias: "p",
+        describe: "Password"
+      }
+    },
+    function(argv) {
+      checkEmail(argv);
     }
   )
   .demandCommand()
