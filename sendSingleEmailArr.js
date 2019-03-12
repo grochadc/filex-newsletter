@@ -1,13 +1,21 @@
 const nodemailer = require("nodemailer");
-const emails = require("./failed-emails.js");
-
+const emails = require("./data/resend2.js");
 const fs = require("fs");
+
 const { parseCSS } = require("./parseCSS");
 
 let sender = process.argv[2];
 let pass = process.argv[3];
 
-async function main(cli) {
+let failed = [];
+let promises;
+
+async function main() {
+  if (sender === undefined) {
+    console.log("Please specify credentials");
+    throw new Error("No credentials, aborting...");
+    return;
+  }
   console.log("Sending a single email...");
   let transportOpts = {
     host: "smtp.gmail.com",
@@ -36,11 +44,26 @@ async function main(cli) {
       html: parsedHTML.html
     };
 
-    let info = await transporter.sendMail(mailOptions);
-    console.log("Email sent to", email, info.messageID);
+    transporter
+      .sendMail(mailOptions)
+      .then(() => console.log("Email sent to", email))
+      .catch(() => {
+        console.error("Failed email", email);
+        failed.push(email);
+      });
   });
-
   console.log("Waiting for email confirmation...");
 }
 
-main().catch(console.error);
+main()
+  .then(() =>
+    Promise.all(promises.map(p => p.catch(() => undefined))).then(
+      fs.writeFile(
+        `.data/failed/failed-${new Date()}`,
+        `module.exports = {
+          date: ${JSON.stringify(new Date())},
+          emails: ${JSON.stringify(failed)}}`
+      )
+    )
+  )
+  .catch(console.error);
