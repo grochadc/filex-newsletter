@@ -1,3 +1,7 @@
+//-------------------------------------//
+// Send an array of emails one by one  //
+//-------------------------------------//
+
 const nodemailer = require("nodemailer");
 const emails = require("./data/resend2.js");
 const fs = require("fs");
@@ -7,8 +11,8 @@ const { parseCSS } = require("./parseCSS");
 let sender = process.argv[2];
 let pass = process.argv[3];
 
-let failed = [];
-let promises;
+let failed = []; //Failed email adresses will be pushed here arr [see 56:9]
+let promises; //Promises for sent mails will be pushed here to use with Promise.all [see ]
 
 async function main() {
   if (sender === undefined) {
@@ -36,7 +40,7 @@ async function main() {
   console.log("Parsing CSS...");
   const parsedHTML = await parseCSS("./newsletter/2muxes.html");
 
-  emails.forEach(async email => {
+  promises = emails.map(async email => {
     let mailOptions = {
       from: "FILEX Newsletter <filexnewsletter@gmail.com>",
       to: email,
