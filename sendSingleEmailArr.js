@@ -40,6 +40,7 @@ async function main() {
   console.log("Parsing CSS...");
   const parsedHTML = await parseCSS("./newsletter/2muxes.html");
 
+  //map all promises to use with Promise.all
   promises = emails.map(async email => {
     let mailOptions = {
       from: "FILEX Newsletter <filexnewsletter@gmail.com>",
@@ -61,6 +62,7 @@ async function main() {
 
 main()
   .then(() =>
+    //Wait for all promises to finish (even rejected ones)
     Promise.all(promises.map(p => p.catch(() => undefined))).then(
       fs.writeFile(
         `.data/failed/failed-${new Date()}`,

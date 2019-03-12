@@ -34,6 +34,7 @@ require("yargs")
           verbose
         }).catch(console.error);
       } else {
+        //When this func is called without args, a dummy email is sent
         sendEmail().catch(console.error);
       }
     }

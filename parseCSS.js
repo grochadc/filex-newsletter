@@ -6,6 +6,7 @@ const { JSDOM } = require("jsdom");
 
 const readFile = util.promisify(fs.readFile);
 
+//filepath is the HTML file to parse
 async function main(filepath) {
   const htmlInput = await readFile(filepath);
   const html = await inlineCSS(htmlInput, {
