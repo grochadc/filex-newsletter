@@ -1,3 +1,7 @@
+//-------------------------------//
+//  Send email by chunks of 100  //
+//-------------------------------//
+
 const nodemailer = require("nodemailer");
 const emails = require("./emails.js");
 
@@ -22,6 +26,7 @@ async function main(cli) {
       }
     };
   } else {
+    //If no arguments are recieved send a dummy email
     console.log("Creating test account...");
     const account = await nodemailer.createTestAccount();
     transportOpts = {
@@ -44,6 +49,7 @@ async function main(cli) {
   console.log("Parsing CSS...");
   const parsedHTML = await parseCSS("./newsletter/2muxes.html");
 
+  //emails are sent by chunks [deprecated]
   emails.forEach(async (chunk, i) => {
     let chunkedEmails = chunk.join();
 
