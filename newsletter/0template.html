@@ -12,10 +12,14 @@
       <div class="line"></div>
       <div id="content">
         <div id="mainText">
+          <h2>${subtitle}</h2>
+          <img src="${image}" class="main" border="0"/>
           ${body}
         </div>
         <div id="vocabulary">
-            ${vocabulary}
+          ${`
+            ${vocabulary.map((item, i) => `<div><sup>${i+1}</sup>${item}</div>`).join('\n')}
+            `}
         </div>
       </div>
         <footer><div class="line"></div>
