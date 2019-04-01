@@ -5,12 +5,15 @@
 const nodemailer = require("nodemailer");
 const emails = require(process.argv[5]);
 const fs = require("fs");
+const log = require("./lib/replaceLine");
 
 const { parseCSS } = require("./parseCSS");
 
 let sender = process.argv[2];
 let pass = process.argv[3];
 let articlePath = process.argv[4];
+
+console.log("starting script", sender, pass, articlePath, emails);
 
 let failed = []; //Failed email adresses will be pushed here arr [see 56:9]
 let promises; //Promises for sent mails will be pushed here to use with Promise.all [see ]
@@ -41,8 +44,10 @@ async function main() {
   console.log("Parsing CSS...");
   const parsedHTML = await parseCSS(articlePath);
 
+  let counter = 1;
+
   //map all promises to use with Promise.all
-  promises = emails.map(async email => {
+  promises = emails.map(async (email, index, arr) => {
     let mailOptions = {
       from: "FILEX Newsletter <filexnewsletter@gmail.com>",
       to: email,
@@ -52,9 +57,19 @@ async function main() {
 
     transporter
       .sendMail(mailOptions)
-      .then(() => console.log("Email sent to", email))
+      .then(() => {
+        counter++;
+        log(
+          `${counter}/${arr.length + 1}Succesful email sent to ${email}`,
+          Boolean(index == arr.length)
+        );
+      })
       .catch(() => {
-        console.error("Failed email", email);
+        counter++;
+        log(
+          `${counter}/${arr.length + 1} Failed email to ${email}`,
+          Boolean(index == arr.length)
+        );
         failed.push(email);
       });
   });
